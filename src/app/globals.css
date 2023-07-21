@@ -3,4 +3,6 @@
 @tailwind utilities;
 
 body {
+  @apply text-copy-main;
+  @apply bg-background-subtle;
 }
