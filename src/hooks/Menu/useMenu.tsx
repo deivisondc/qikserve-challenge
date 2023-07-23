@@ -1,6 +1,15 @@
 "use client";
 
-import { ReactNode, createContext, useContext, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useDeferredValue,
+  useMemo,
+  useState,
+} from "react";
+
+import { arrayHasElements } from "@/utils/arrayUtils";
 
 interface IMenuProvider {
   children: ReactNode;
@@ -58,15 +67,55 @@ type MenuDetail = {
 
 interface IMenuContext {
   menu: MenuDetail;
+  filteredMenu: MenuDetail;
+  filterQuery: string;
+  handleSearchInputChange: (value: string) => void;
 }
 
 const MenuContext = createContext({} as IMenuContext);
 
 const MenuProvider = ({ children, value }: IMenuProvider) => {
   const [menu] = useState(value);
+  const [filterQuery, setFilterQuery] = useState("");
+  const defferedFilterQuery = useDeferredValue(filterQuery);
+
+  const filteredMenu = useMemo(() => {
+    if (!defferedFilterQuery) {
+      return menu;
+    }
+
+    const filteredSections = menu.sections.map((section) => ({
+      ...section,
+      items: section.items.filter((item) =>
+        item.name.toLowerCase().includes(defferedFilterQuery.toLowerCase()),
+      ),
+    }));
+
+    return {
+      ...menu,
+      sections: filteredSections.filter((filteredSection) =>
+        arrayHasElements(filteredSection.items),
+      ),
+    };
+  }, [menu, defferedFilterQuery]);
+
+  const handleSearchInputChange = (value: string) => {
+    // startTransition(() => {
+    setFilterQuery(value);
+    // });
+  };
 
   return (
-    <MenuContext.Provider value={{ menu }}>{children}</MenuContext.Provider>
+    <MenuContext.Provider
+      value={{
+        menu,
+        filteredMenu,
+        filterQuery,
+        handleSearchInputChange,
+      }}
+    >
+      {children}
+    </MenuContext.Provider>
   );
 };
 

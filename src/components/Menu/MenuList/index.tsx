@@ -5,11 +5,11 @@ import { useMenu } from "@/hooks/Menu/useMenu";
 import { MenuListSection } from "./MenuSection";
 
 const MenuList = () => {
-  const { menu } = useMenu();
+  const { filteredMenu } = useMenu();
 
   return (
     <>
-      {menu.sections.map((section) => (
+      {filteredMenu.sections.map((section) => (
         <MenuListSection key={section.id} section={section} />
       ))}
     </>
