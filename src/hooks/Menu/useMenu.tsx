@@ -12,6 +12,24 @@ type ImageType = {
   image: string;
 };
 
+export type ModifierItem = {
+  id: number;
+  name: string;
+  price: number;
+  maxChoices: number;
+  position: number;
+  visible: number;
+  available: boolean;
+};
+
+export type Modifier = {
+  id: number;
+  name: string;
+  minChoices: number;
+  maxChoices: number;
+  items: Array<ModifierItem>;
+};
+
 export type SectionItemType = {
   id: number;
   name: string;
@@ -21,6 +39,7 @@ export type SectionItemType = {
   price: number;
   position: number;
   visible: boolean;
+  modifiers?: Array<Modifier>;
 };
 
 export type SectionType = {

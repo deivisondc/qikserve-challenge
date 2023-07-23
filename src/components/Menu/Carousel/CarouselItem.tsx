@@ -14,8 +14,8 @@ const CarouselItem = ({ section, isActive, onClick }: CarouselItemProps) => {
   return (
     <button
       className={clsx(
-        "flex w-[104px] cursor-pointer flex-col items-center border-copy-main",
-        { "border-b-2": isActive },
+        "flex w-[104px] cursor-pointer flex-col items-center border-b-2",
+        { "border-copy-main": isActive, "border-transparent": !isActive },
       )}
       onClick={() => onClick(section.id)}
     >
