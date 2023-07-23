@@ -1,6 +1,7 @@
 "use client";
 
-import { RadioGroupItem } from "@/components/WhiteLabel/RadixUI/RadioGroupItem";
+import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
+
 import { useCompany } from "@/hooks/Company/useCompany";
 import { ModifierItem } from "@/hooks/Menu/useMenu";
 import { formatCurrency } from "@/utils/formatCurrency";
