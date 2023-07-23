@@ -6,6 +6,7 @@
   "plugins": ["eslint-plugin-import-helpers", "prettier"],
   "rules": {
     "prettier/prettier": "error",
+    "@next/next/no-img-element": "off",
     "import-helpers/order-imports": [
 			"warn",
 			{
