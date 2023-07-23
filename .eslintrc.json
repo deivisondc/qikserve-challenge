@@ -3,8 +3,22 @@
     "next/core-web-vitals",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["prettier"],
+  "plugins": ["eslint-plugin-import-helpers", "prettier"],
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "import-helpers/order-imports": [
+			"warn",
+			{
+				"newlinesBetween": "always",
+				"groups": [
+					["/^react/"],
+					["/^next/"],
+					["module"],
+					["/^@//"],
+					["parent", "sibling", "index"]
+				],
+				"alphabetize": { "order": "asc", "ignoreCase": true }
+			}
+		]
   }
 }

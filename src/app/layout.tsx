@@ -19,14 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <nav>
-          <ul className="flex flex-row uppercase">
-            <li>Menu</li>
-            <li>Entrar</li>
-            <li>Contato</li>
-          </ul>
-        </nav>
+        <Suspense fallback={<p>loading;</p>}>
+          <CompanyProviderContainer>
+            <Header />
         {children}
+          </CompanyProviderContainer>
+        </Suspense>
       </body>
     </html>
   );

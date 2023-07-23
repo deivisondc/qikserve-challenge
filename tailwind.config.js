@@ -7,6 +7,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      width: {
+        58: "14.5rem /* 232px */",
+      },
+      borderWidth: {
+        5: "5px",
+      },
+      borderColor: {
+        input: "#8A94A4",
+      },
       colors: {
         copy: {
           main: "#121212",
