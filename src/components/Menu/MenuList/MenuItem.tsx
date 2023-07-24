@@ -33,7 +33,7 @@ const MenuListItem = ({ sectionId, item }: MenuListItemProps) => {
       }
     >
       <Dialog.Trigger asChild>
-        <button className="group flex justify-between gap-10 p-4 text-left">
+        <button className="group flex w-full justify-between gap-10 p-4 text-left">
           <section className="min-w-0">
             <div className="flex items-center gap-2">
               <Badge value={getAmountSelected(item.id)} />

@@ -16,7 +16,7 @@ const Carousel = () => {
   }
 
   return (
-    <div className="flex gap-4 px-4 pb-6 pt-5">
+    <div className="flex gap-4 px-4 pb-5">
       {menu.sections.map((section) => (
         <CarouselItem
           key={section.id}
