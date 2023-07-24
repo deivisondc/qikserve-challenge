@@ -11,7 +11,7 @@ const Cart = () => {
   const { companyDetails } = useCompany();
 
   return (
-    <section className="w-[300px] drop-shadow-lg">
+    <section className="flex-shrink-0 flex-grow-0 basis-[300px] drop-shadow-lg">
       <header className=" bg-background-default">
         <h1 className="p-6 text-2xl font-medium">Carrinho</h1>
       </header>

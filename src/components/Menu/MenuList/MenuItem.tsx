@@ -33,14 +33,16 @@ const MenuListItem = ({ sectionId, item }: MenuListItemProps) => {
       }
     >
       <Dialog.Trigger asChild>
-        <button className="group flex gap-4 p-4 text-left">
-          <section className="flex-1">
+        <button className="group flex justify-between gap-10 p-4 text-left">
+          <section className="min-w-0">
             <div className="flex items-center gap-2">
               <Badge value={getAmountSelected(item.id)} />
               <p className="font-medium group-hover:underline">{item.name}</p>
             </div>
 
-            <p className="font-light">{item.description}</p>
+            <p className="overflow-hidden text-ellipsis whitespace-nowrap font-light ">
+              {item.description}
+            </p>
 
             <span className="font-medium">
               {formatCurrency(item.price, {
@@ -51,7 +53,7 @@ const MenuListItem = ({ sectionId, item }: MenuListItemProps) => {
           </section>
 
           {arrayHasElements(item.images) && (
-            <picture>
+            <picture className="flex-shrink-0 flex-grow-0">
               <img
                 src={item.images[0].image}
                 width={128}

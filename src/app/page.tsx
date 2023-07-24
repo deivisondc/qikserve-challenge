@@ -11,7 +11,7 @@ export default function Home() {
         <CartProvider>
           <SearchInput />
 
-          <div className="grid w-full flex-1 grid-cols-[1fr_300px] grid-rows-[auto_1fr] gap-6 bg-background-default px-10 py-8 ">
+          <div className="flex w-full flex-1 gap-6 bg-background-default px-10 py-8 ">
             <Menu />
             <Cart />
           </div>
