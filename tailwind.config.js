@@ -26,6 +26,7 @@ module.exports = {
         background: {
           default: "#f8f9fa",
           subtle: "#eeeeee",
+          inactive: "#dadada",
         },
       },
     },

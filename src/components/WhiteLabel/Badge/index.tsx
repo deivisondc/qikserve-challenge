@@ -5,7 +5,7 @@ import styled from "@emotion/styled";
 import { useCompany } from "@/hooks/Company/useCompany";
 
 interface BadgeProps {
-  children: ReactNode;
+  value: number;
 }
 
 interface BadgeContainerProps {
@@ -16,15 +16,19 @@ const BadgeContainer = styled.div<BadgeContainerProps>`
   background: ${({ primaryColour }) => primaryColour};
 `;
 
-const Badge = ({ children }: BadgeProps) => {
+const Badge = ({ value }: BadgeProps) => {
   const { companyDetails } = useCompany();
+
+  if (!value) {
+    return null;
+  }
 
   return (
     <BadgeContainer
-      className="flex h-[18px] w-[18px] items-center justify-center rounded-md text-sm font-medium text-white"
+      className="flex min-h-[18px] min-w-[18px] items-center justify-center rounded-[4px] px-1 text-sm font-medium leading-none text-white"
       primaryColour={companyDetails.webSettings.primaryColour}
     >
-      {children}
+      <span>{value}</span>
     </BadgeContainer>
   );
 };

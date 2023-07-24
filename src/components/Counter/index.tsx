@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import clsx from "clsx";
 
@@ -7,32 +7,64 @@ import { Plus } from "../Icons/Plus";
 import { RoundButton } from "../WhiteLabel/RoundButton";
 
 interface CounterProps {
+  minValue?: number;
+  maxValue?: number;
   small?: boolean;
+  initialValue?: number;
+  onValueChange?: (value: number) => void;
 }
 
-const Counter = ({ small }: CounterProps) => {
-  const [counter, setCounter] = useState(0);
+const Counter = ({
+  minValue = 0,
+  maxValue = 3,
+  small,
+  initialValue,
+  onValueChange,
+}: CounterProps) => {
+  const [counter, setCounter] = useState(initialValue ?? minValue);
 
   const handleIncrease = () => {
-    setCounter((state) => state + 1);
+    if (maxValue && counter < maxValue) {
+      const newCounter = counter + 1;
+
+      setCounter(newCounter);
+      onValueChange && onValueChange(newCounter);
+    }
   };
 
   const handleDecrease = () => {
-    setCounter((state) => state - 1);
+    if (counter > minValue) {
+      const newCounter = counter - 1;
+
+      setCounter(newCounter);
+      onValueChange && onValueChange(newCounter);
+    }
   };
 
   return (
     <div
-      className={clsx("flex items-center justify-between", {
+      className={clsx("flex w-fit items-center justify-between", {
         "gap-1": small,
         "gap-4": !small,
       })}
     >
-      <RoundButton icon={Minus} onClick={handleDecrease} small={small} />
+      <RoundButton
+        icon={Minus}
+        onClick={handleDecrease}
+        small={small}
+        disabled={counter === minValue}
+      />
+
       <span className="flex min-w-[30px] justify-center font-bold">
         {counter}
       </span>
-      <RoundButton icon={Plus} onClick={handleIncrease} small={small} />
+
+      <RoundButton
+        icon={Plus}
+        onClick={handleIncrease}
+        small={small}
+        disabled={counter === maxValue}
+      />
     </div>
   );
 };

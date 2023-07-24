@@ -14,10 +14,13 @@ const ModifierItem = ({ modifierItem }: ModifierItemProps) => {
 
   return (
     <div
-      className="flex items-center justify-between px-6"
+      className="flex items-center justify-between gap-4 px-6"
       key={modifierItem.id}
     >
-      <div className="flex flex-col gap-1 pb-4 pt-3.5">
+      <label
+        className="flex w-full cursor-pointer flex-col gap-1 pb-4 pt-3.5"
+        htmlFor={modifierItem.id.toString()}
+      >
         <strong>{modifierItem.name}</strong>
         <span className="block">
           {formatCurrency(modifierItem.price, {
@@ -25,9 +28,12 @@ const ModifierItem = ({ modifierItem }: ModifierItemProps) => {
             currency: companyDetails.ccy,
           })}
         </span>
-      </div>
+      </label>
 
-      <RadioGroupItem value={modifierItem.id.toString()} />
+      <RadioGroupItem
+        id={modifierItem.id.toString()}
+        value={modifierItem.id.toString()}
+      />
     </div>
   );
 };

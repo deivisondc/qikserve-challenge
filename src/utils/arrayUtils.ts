@@ -1,3 +1,3 @@
-export const arrayHasElements = (array: Array<any>) => {
+export const arrayHasElements = (array?: Array<any>) => {
   return array && array.length > 0;
 };

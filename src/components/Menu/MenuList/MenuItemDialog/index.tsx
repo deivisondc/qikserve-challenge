@@ -1,6 +1,9 @@
+import { useEffect, useState } from "react";
+
 import * as Dialog from "@radix-ui/react-dialog";
 
 import { SectionItemType } from "@/hooks/Menu/useMenu";
+import { arrayHasElements } from "@/utils/arrayUtils";
 
 import { DialogBanner } from "./DialogBanner";
 import { DialogCloseButton } from "./DialogCloseButton";

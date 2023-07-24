@@ -23,7 +23,7 @@ const MenuListSection = ({ section }: MenuListSectionProps) => {
       </button>
 
       {section.items.map((item) => (
-        <MenuListItem key={item.id} item={item} />
+        <MenuListItem key={item.id} sectionId={section.id} item={item} />
       ))}
     </>
   );

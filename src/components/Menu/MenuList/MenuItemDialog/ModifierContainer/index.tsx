@@ -2,7 +2,11 @@ import { ReactNode } from "react";
 
 import * as RadioGroup from "@radix-ui/react-radio-group";
 
-import { Modifier } from "@/hooks/Menu/useMenu";
+import { ModifierSelection, useCart } from "@/hooks/Cart/useCart";
+import {
+  Modifier,
+  ModifierItem as ModifierItemType,
+} from "@/hooks/Menu/useMenu";
 
 import { ModifierItem } from "./ModifierItem";
 
@@ -11,6 +15,33 @@ interface ModifierContainerProps {
 }
 
 const ModifierContainer = ({ modifiers = [] }: ModifierContainerProps) => {
+  const { updateSelectedItemModifier } = useCart();
+
+  const handleModifierItemChange = (
+    modifierId: number,
+    modifierItems: Array<ModifierItemType>,
+    modifierItemId: number,
+  ) => {
+    const modifierItem = modifierItems.find(
+      (item) => item.id === modifierItemId,
+    );
+
+    if (modifierItem) {
+      const modifierSelection: ModifierSelection = {
+        id: modifierId,
+        items: [
+          {
+            id: modifierItem.id,
+            name: modifierItem.name,
+            price: modifierItem.price,
+          },
+        ],
+      };
+
+      updateSelectedItemModifier(modifierSelection);
+    }
+  };
+
   return (
     <>
       {modifiers.map((modifier) => (
@@ -20,7 +51,15 @@ const ModifierContainer = ({ modifiers = [] }: ModifierContainerProps) => {
             <span className="block leading-tight">Select 1 option</span>
           </div>
 
-          <RadioGroup.Root>
+          <RadioGroup.Root
+            onValueChange={(value) =>
+              handleModifierItemChange(
+                modifier.id,
+                modifier.items,
+                Number(value),
+              )
+            }
+          >
             <div className="flex flex-col bg-white">
               {modifier.items.map((modifierItem) => (
                 <ModifierItem

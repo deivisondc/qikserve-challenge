@@ -8,6 +8,7 @@ import { useCompany } from "@/hooks/Company/useCompany";
 interface RoundButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   small?: boolean;
   icon: ElementType;
+  disabled?: boolean;
 }
 
 interface ButtonContainerProps {
@@ -16,14 +17,23 @@ interface ButtonContainerProps {
 }
 
 const ButtonContainer = styled.button<ButtonContainerProps>`
-  background: ${({ primaryColour }) => primaryColour};
+  ${({ primaryColour, primaryColourHover, disabled }) =>
+    !disabled &&
+    `
+    background: ${primaryColour};
 
-  &:hover {
-    background: ${({ primaryColourHover }) => primaryColourHover};
-  }
+    &:hover {
+      background: ${primaryColourHover};
+    }
+  `};
 `;
 
-const RoundButton = ({ small, icon: Icon, ...rest }: RoundButtonProps) => {
+const RoundButton = ({
+  small,
+  icon: Icon,
+  disabled = false,
+  ...rest
+}: RoundButtonProps) => {
   const {
     companyDetails: { webSettings },
   } = useCompany();
@@ -35,7 +45,9 @@ const RoundButton = ({ small, icon: Icon, ...rest }: RoundButtonProps) => {
       className={clsx("flex items-center justify-center rounded-full", {
         "h-5 w-5": small,
         "h-8 w-8": !small,
+        "bg-background-inactive": disabled,
       })}
+      disabled={disabled}
       {...rest}
     >
       <Icon />

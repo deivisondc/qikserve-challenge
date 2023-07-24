@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import * as Dialog from "@radix-ui/react-dialog";
 
+import { useCart } from "@/hooks/Cart/useCart";
 import { useCompany } from "@/hooks/Company/useCompany";
 import { SectionItemType } from "@/hooks/Menu/useMenu";
 import { arrayHasElements } from "@/utils/arrayUtils";
@@ -11,21 +12,31 @@ import { Badge } from "../../WhiteLabel/Badge";
 import { MenuItemDialog } from "./MenuItemDialog";
 
 interface MenuListItemProps {
+  sectionId: number;
   item: SectionItemType;
 }
 
-const MenuListItem = ({ item }: MenuListItemProps) => {
-  const [amountSelected, setAmountSelected] = useState(2);
-
+const MenuListItem = ({ sectionId, item }: MenuListItemProps) => {
   const { companyDetails } = useCompany();
+  const { selectItem, resetSelectedItem, cartItems } = useCart();
+
+  const getAmountSelected = (itemId: number) => {
+    const items = cartItems.filter((cartItem) => cartItem.itemId === itemId);
+
+    return items.reduce((acc, cur) => acc + cur.amount, 0);
+  };
 
   return (
-    <Dialog.Root>
+    <Dialog.Root
+      onOpenChange={(isOpen) =>
+        isOpen ? selectItem(sectionId, item.id) : resetSelectedItem()
+      }
+    >
       <Dialog.Trigger asChild>
         <button className="group flex gap-4 p-4 text-left">
           <section className="flex-1">
             <div className="flex items-center gap-2">
-              {amountSelected > 0 && <Badge>{amountSelected}</Badge>}
+              <Badge value={getAmountSelected(item.id)} />
               <p className="font-medium group-hover:underline">{item.name}</p>
             </div>
 
