@@ -1,3 +1,4 @@
+import { Carousel } from "@/components/Carousel";
 import { SectionItemType } from "@/hooks/Menu/useMenu";
 import { arrayHasElements } from "@/utils/arrayUtils";
 
@@ -10,14 +11,9 @@ const DialogBanner = ({ item }: DialogBannerProps) => {
     return null;
   }
 
-  return (
-    <img
-      src={item.images[0].image}
-      alt={item.name}
-      height="320px"
-      className="object-cover"
-    />
-  );
+  const imageSrcArray = item.images.map((image) => image.image);
+
+  return <Carousel imagesSrc={imageSrcArray} alt={item.name} />;
 };
 
 export { DialogBanner };

@@ -10,7 +10,7 @@ const DialogCloseButton = () => {
         className={clsx(
           "h-[28px] w-[28px] rounded-full bg-white",
           "flex items-center justify-center",
-          "absolute right-4 top-4",
+          "absolute right-4 top-4 z-10",
         )}
         aria-label="Close"
       >
