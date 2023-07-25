@@ -1,7 +1,6 @@
 "use client";
 
 import * as Accordion from "@radix-ui/react-accordion";
-import { title } from "process";
 
 import { ChevronDown } from "@/components/Icons/ChevronDown";
 import { useMenu } from "@/hooks/Menu/useMenu";
@@ -24,7 +23,7 @@ const MenuList = () => {
           key={section.id}
         >
           <Accordion.Header>
-            <Accordion.Trigger className="flex w-full items-center justify-between p-4 pt-5 text-2xl font-medium">
+            <Accordion.Trigger className="flex w-full items-center justify-between p-4 pt-5 text-2xl font-medium hover:underline">
               {section.name}
               <ChevronDown />
             </Accordion.Trigger>

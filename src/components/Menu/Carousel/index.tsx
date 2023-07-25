@@ -9,7 +9,7 @@ import { CarouselItem } from "./CarouselItem";
 const Carousel = () => {
   const { menu } = useMenu();
 
-  const [activeSectionId, setActiveSectionId] = useState(0);
+  const [activeSectionId, setActiveSectionId] = useState(menu?.sections[0]?.id);
 
   function handleSectionClick(id: number) {
     setActiveSectionId(id);
