@@ -5,6 +5,8 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 
+import clsx from "clsx";
+
 import { Header } from "@/components/Header";
 import { CompanyProviderContainer } from "@/hooks/Company/CompanyProviderContainer";
 
@@ -28,7 +30,7 @@ export default function RootLayout({
         <Suspense fallback={<p>loading;</p>}>
           <CompanyProviderContainer>
             <Header />
-            <div className="mx-auto max-w-[1440px] px-20 py-1.5">
+            <div className={clsx("lg:mx-auto lg:max-w-[1440px] lg:px-20")}>
               {children}
             </div>
           </CompanyProviderContainer>

@@ -4,7 +4,7 @@
 
 body {
   @apply text-copy-main;
-  @apply bg-background-subtle;
+  @apply bg-white lg:bg-background-subtle;
 }
 
 .accordion[data-state="closed"] svg {

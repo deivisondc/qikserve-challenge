@@ -54,6 +54,8 @@ interface ICartContext {
   addSelectedItemToCart: () => void;
   updateCartItemAmount: (id: number, amount: number) => void;
   cartTotalPrice: number;
+  isCartModalOpen: boolean;
+  toggleCartModal: () => void;
 }
 
 const CartContext = createContext({} as ICartContext);
@@ -63,6 +65,7 @@ const CartProvider = ({ children }: ICartProvider) => {
 
   const [cartItems, setCartItems] = useState<Array<ICartItem>>([]);
   const [selectedItem, setSelectedItem] = useState<ItemSelected>();
+  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
   const resetSelectedItem = useCallback(() => {
     setSelectedItem(undefined);
@@ -174,6 +177,10 @@ const CartProvider = ({ children }: ICartProvider) => {
     }, 0);
   }, [cartItems]);
 
+  const toggleCartModal = () => {
+    setIsCartModalOpen(!isCartModalOpen);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -186,6 +193,8 @@ const CartProvider = ({ children }: ICartProvider) => {
         addSelectedItemToCart,
         updateCartItemAmount,
         cartTotalPrice,
+        isCartModalOpen,
+        toggleCartModal,
       }}
     >
       {children}

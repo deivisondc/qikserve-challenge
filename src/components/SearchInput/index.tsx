@@ -1,15 +1,25 @@
 "use client";
 
-import Image from "next/image";
+import clsx from "clsx";
 
 import { useMenu } from "@/hooks/Menu/useMenu";
+
+import { Search } from "../Icons/Search";
 
 const SearchInput = () => {
   const { filterQuery, handleSearchInputChange } = useMenu();
 
   return (
-    <div className="flex w-full cursor-text items-center gap-3 rounded-lg border border-input bg-white px-3 py-2.5 outline-2 placeholder:text-copy-body focus-within:outline">
-      <Image src="/search.svg" width={24} height={24} alt="Seach menu items" />
+    <div
+      className={clsx(
+        "w-full cursor-text rounded-lg px-3 py-2.5 placeholder:text-copy-body ",
+        "border border-input bg-white",
+        "outline-2 focus-within:outline",
+        "flex items-center gap-3",
+      )}
+    >
+      <Search />
+
       <input
         className="w-full border-0 placeholder:text-copy-body focus:outline-none"
         placeholder="Search menu items"
