@@ -26,14 +26,17 @@ const CartItem = ({ item }: CartItemProps) => {
           <p>{item.name}</p>
           {item.modifiers?.map((modifier) => (
             <p className="text-copy-inactive" key={modifier.id}>
-              {modifier.name}
+              {`${modifier.name} (+${formatCurrency(modifier.price, {
+                locale: companyDetails.locale,
+                currency: companyDetails.ccy,
+              })})`}
             </p>
           ))}
         </div>
-        {/* TODO: adiciona remover amount item */}
+
         <Counter
           small
-          initialValue={item.amount}
+          value={item.amount}
           onValueChange={(value) => updateCartItemAmount(item.id, value)}
         />
       </div>

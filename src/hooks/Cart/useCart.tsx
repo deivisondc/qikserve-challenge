@@ -128,17 +128,51 @@ const CartProvider = ({ children }: ICartProvider) => {
       const modifierItems = selectedItem.modifiers?.flatMap(
         (modifier) => modifier.items,
       );
-      setCartItems((state) => [
-        ...state,
-        {
-          id: lastId + 1,
-          itemId: selectedItem.id,
-          name: selectedItem.name,
-          price: selectedItem.price,
-          amount: selectedItem.amount,
-          modifiers: modifierItems,
-        },
-      ]);
+
+      const existingCartItem = cartItems.find((cartItem) => {
+        if (
+          cartItem.itemId !== selectedItem.id ||
+          cartItem.modifiers?.length !== selectedItem.modifiers?.length
+        ) {
+          return false;
+        }
+
+        const cartItemModifierItemsIds = (
+          cartItem.modifiers?.flatMap((modifier) => modifier.id) || []
+        )
+          .sort()
+          .join(";");
+
+        const selectedItemModifierItemsIds = (
+          modifierItems?.map((modifierItem) => modifierItem.id) || []
+        )
+          .sort()
+          .join(";");
+
+        return (
+          cartItem.itemId === selectedItem.id &&
+          cartItemModifierItemsIds === selectedItemModifierItemsIds
+        );
+      });
+
+      if (existingCartItem) {
+        updateCartItemAmount(
+          existingCartItem.id,
+          existingCartItem.amount + selectedItem.amount,
+        );
+      } else {
+        setCartItems((state) => [
+          ...state,
+          {
+            id: lastId + 1,
+            itemId: selectedItem.id,
+            name: selectedItem.name,
+            price: selectedItem.price,
+            amount: selectedItem.amount,
+            modifiers: modifierItems,
+          },
+        ]);
+      }
     }
   };
 

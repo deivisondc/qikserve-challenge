@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import clsx from "clsx";
 
@@ -12,18 +12,24 @@ interface CounterProps {
   minValue?: number;
   maxValue?: number;
   small?: boolean;
-  initialValue?: number;
+  value?: number;
   onValueChange?: (value: number) => void;
 }
 
 const Counter = ({
   minValue = 0,
-  maxValue = 3,
+  maxValue = 99,
   small,
-  initialValue,
+  value,
   onValueChange,
 }: CounterProps) => {
-  const [counter, setCounter] = useState(initialValue ?? minValue);
+  const [counter, setCounter] = useState(value ?? minValue);
+
+  useEffect(() => {
+    if (value !== undefined) {
+      setCounter(value);
+    }
+  }, [value]);
 
   const handleIncrease = () => {
     if (maxValue && counter < maxValue) {
