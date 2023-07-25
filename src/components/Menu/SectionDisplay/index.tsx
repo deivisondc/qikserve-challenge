@@ -4,9 +4,9 @@ import { useState } from "react";
 
 import { useMenu } from "@/hooks/Menu/useMenu";
 
-import { CarouselItem } from "./CarouselItem";
+import { SectionDisplayItem } from "./SectionDisplayItem";
 
-const Carousel = () => {
+const SectionDisplay = () => {
   const { menu } = useMenu();
 
   const [activeSectionId, setActiveSectionId] = useState(menu?.sections[0]?.id);
@@ -16,9 +16,9 @@ const Carousel = () => {
   }
 
   return (
-    <div className="flex gap-4 px-4 pb-5">
+    <div className="flex gap-4 overflow-auto px-4 pb-5">
       {menu.sections.map((section) => (
-        <CarouselItem
+        <SectionDisplayItem
           key={section.id}
           section={section}
           isActive={section.id === activeSectionId}
@@ -29,4 +29,4 @@ const Carousel = () => {
   );
 };
 
-export { Carousel };
+export { SectionDisplay };

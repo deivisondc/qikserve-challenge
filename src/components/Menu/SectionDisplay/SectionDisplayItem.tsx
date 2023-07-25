@@ -4,17 +4,21 @@ import { SectionType } from "@/hooks/Menu/useMenu";
 
 import { BorderedRoundImage } from "../../WhiteLabel/BorderedRoundImage";
 
-interface CarouselItemProps {
+interface SectionDisplayItemProps {
   section: SectionType;
   isActive?: boolean;
   onClick: (id: number) => void;
 }
 
-const CarouselItem = ({ section, isActive, onClick }: CarouselItemProps) => {
+const SectionDisplayItem = ({
+  section,
+  isActive,
+  onClick,
+}: SectionDisplayItemProps) => {
   return (
     <button
       className={clsx(
-        "group flex w-[104px] cursor-pointer flex-col items-center border-b-2",
+        "group flex w-[104px] flex-shrink-0 cursor-pointer flex-col items-center border-b-2",
         { "border-copy-main": isActive, "border-transparent": !isActive },
       )}
       onClick={() => onClick(section.id)}
@@ -31,4 +35,4 @@ const CarouselItem = ({ section, isActive, onClick }: CarouselItemProps) => {
   );
 };
 
-export { CarouselItem };
+export { SectionDisplayItem };

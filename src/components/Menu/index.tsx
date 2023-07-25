@@ -1,10 +1,8 @@
 import clsx from "clsx";
 
 import { MobileFooter } from "../MobileFooter";
-import { PrimaryButton } from "../WhiteLabel/PrimaryButton";
-import { SecondaryButton } from "../WhiteLabel/SecondaryButton";
-import { Carousel } from "./Carousel";
 import { MenuList } from "./MenuList";
+import { SectionDisplay } from "./SectionDisplay";
 
 const Menu = () => {
   return (
@@ -15,7 +13,7 @@ const Menu = () => {
           "lg:px-4 lg:pb-6 lg:drop-shadow-lg",
         )}
       >
-        <Carousel />
+        <SectionDisplay />
         <MenuList />
       </div>
       <MobileFooter />
