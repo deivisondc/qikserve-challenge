@@ -18,9 +18,9 @@ export default function Home() {
 
           <div
             className={clsx(
-              "flex w-full flex-1 gap-6 bg-background-default",
+              "flex w-full flex-1 flex-col bg-background-default",
               "lg:flex-row lg:px-10 lg:py-8",
-              "flex-col",
+              "lg:gap-6",
             )}
           >
             <Menu />

@@ -17,18 +17,31 @@ const MobileFooter = () => {
     itemAmountSum === 1 ? "1 item" : `${itemAmountSum} items`;
 
   return (
-    <div className={clsx("block bg-background-default", "lg:hidden")}>
-      <div className="flex items-center justify-center border-y p-6">
-        <SecondaryButton>View allergy information</SecondaryButton>
+    <>
+      <div className={clsx("block bg-background-default", "lg:hidden")}>
+        <div className="flex items-center justify-center border-y p-6">
+          <SecondaryButton>View allergy information</SecondaryButton>
+        </div>
+
+        {isBasketButtonHidden && (
+          <div
+            className={clsx("h-20 bg-background-default p-6 pt-2", "lg:hidden")}
+          />
+        )}
       </div>
-      <div className="h-20 p-6 pt-2">
-        {!isBasketButtonHidden && (
+      {!isBasketButtonHidden && (
+        <div
+          className={clsx(
+            "sticky bottom-0 z-10 h-20 bg-transparent p-6 pt-2 backdrop-blur-sm",
+            "lg:hidden",
+          )}
+        >
           <PrimaryButton onClick={toggleCartModal}>
             Your basket - {itemAmountString}
           </PrimaryButton>
-        )}
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 };
 
