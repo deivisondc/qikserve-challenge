@@ -47,7 +47,7 @@ export type SectionItemType = {
   images: Array<ImageType>;
   price: number;
   position: number;
-  visible: boolean;
+  visible: number;
   modifiers?: Array<Modifier>;
 };
 
@@ -56,7 +56,7 @@ export type SectionType = {
   name: string;
   description: string;
   position: number;
-  visible: boolean;
+  visible: number;
   images: Array<ImageType>;
   items: Array<SectionItemType>;
 };

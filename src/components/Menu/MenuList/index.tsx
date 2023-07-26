@@ -16,25 +16,33 @@ const MenuList = () => {
 
   return (
     <Accordion.Root type="multiple" defaultValue={accordionDefaultValue}>
-      {filteredMenu.sections.map((section) => (
-        <Accordion.Item
-          value={section.id.toString()}
-          className="accordion"
-          key={section.id}
-        >
-          <Accordion.Header>
-            <Accordion.Trigger className="flex w-full items-center justify-between p-4 pt-5 text-2xl font-medium hover:underline">
-              {section.name}
-              <ChevronDown />
-            </Accordion.Trigger>
-          </Accordion.Header>
-          <Accordion.Content>
-            {section.items.map((item) => (
-              <MenuListItem key={item.id} sectionId={section.id} item={item} />
-            ))}
-          </Accordion.Content>
-        </Accordion.Item>
-      ))}
+      {filteredMenu.sections.map((section) =>
+        section.visible ? (
+          <Accordion.Item
+            value={section.id.toString()}
+            className="accordion"
+            key={section.id}
+          >
+            <Accordion.Header>
+              <Accordion.Trigger className="flex w-full items-center justify-between p-4 pt-5 text-2xl font-medium hover:underline">
+                {section.name}
+                <ChevronDown />
+              </Accordion.Trigger>
+            </Accordion.Header>
+            <Accordion.Content>
+              {section.items.map((item) =>
+                item.visible ? (
+                  <MenuListItem
+                    key={item.id}
+                    sectionId={section.id}
+                    item={item}
+                  />
+                ) : null,
+              )}
+            </Accordion.Content>
+          </Accordion.Item>
+        ) : null,
+      )}
     </Accordion.Root>
   );
 };

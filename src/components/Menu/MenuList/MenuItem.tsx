@@ -1,6 +1,5 @@
-import { useState } from "react";
-
 import * as Dialog from "@radix-ui/react-dialog";
+import clsx from "clsx";
 
 import { useCart } from "@/hooks/Cart/useCart";
 import { useCompany } from "@/hooks/Company/useCompany";
@@ -32,8 +31,13 @@ const MenuListItem = ({ sectionId, item }: MenuListItemProps) => {
         isOpen ? selectItem(sectionId, item.id) : resetSelectedItem()
       }
     >
-      <Dialog.Trigger asChild>
-        <button className="group flex w-full justify-between gap-10 p-4 text-left">
+      <Dialog.Trigger asChild disabled={!item.available}>
+        <button
+          className={clsx("flex w-full justify-between gap-10 p-4 text-left", {
+            group: item.available,
+            "cursor-not-allowed opacity-60": !item.available,
+          })}
+        >
           <section className="min-w-0">
             <div className="flex items-center gap-2">
               <Badge value={getAmountSelected(item.id)} />

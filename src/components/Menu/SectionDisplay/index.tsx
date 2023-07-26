@@ -17,14 +17,16 @@ const SectionDisplay = () => {
 
   return (
     <div className="flex gap-4 overflow-auto px-4 pb-5">
-      {menu.sections.map((section) => (
-        <SectionDisplayItem
-          key={section.id}
-          section={section}
-          isActive={section.id === activeSectionId}
-          onClick={handleSectionClick}
-        />
-      ))}
+      {menu.sections.map((section) =>
+        section.visible ? (
+          <SectionDisplayItem
+            key={section.id}
+            section={section}
+            isActive={section.id === activeSectionId}
+            onClick={handleSectionClick}
+          />
+        ) : null,
+      )}
     </div>
   );
 };
