@@ -9,6 +9,8 @@ import {
   useState,
 } from "react";
 
+import { CartRemoveConfirmationModal } from "@/components/Cart/CartRemoveConfirmationModal";
+
 import { useMenu } from "../Menu/useMenu";
 
 interface ICartProvider {
@@ -66,6 +68,8 @@ const CartProvider = ({ children }: ICartProvider) => {
   const [cartItems, setCartItems] = useState<Array<ICartItem>>([]);
   const [selectedItem, setSelectedItem] = useState<ItemSelected>();
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
+
+  const [cartItemBeingRemoved, setCartItemBeingRemoved] = useState<ICartItem>();
 
   const resetSelectedItem = useCallback(() => {
     setSelectedItem(undefined);
@@ -177,16 +181,15 @@ const CartProvider = ({ children }: ICartProvider) => {
   };
 
   const updateCartItemAmount = (id: number, amount: number) => {
-    if (amount === 0) {
-      setCartItems(cartItems.filter((cartItem) => cartItem.id !== id));
-      return;
-    }
-
     const updatedCartItemIndex = cartItems.findIndex(
       (cartItem) => cartItem.id === id,
     );
 
     if (updatedCartItemIndex > -1) {
+      if (amount === 0) {
+        setCartItemBeingRemoved(cartItems[updatedCartItemIndex]);
+      }
+
       const newCartItem = cartItems.map((cartItem, index) => {
         if (index !== updatedCartItemIndex) return cartItem;
 
@@ -215,6 +218,22 @@ const CartProvider = ({ children }: ICartProvider) => {
     setIsCartModalOpen(!isCartModalOpen);
   };
 
+  const handleRemoveItemModalConfirmation = (value: boolean) => {
+    if (cartItemBeingRemoved) {
+      if (value) {
+        setCartItems(
+          cartItems.filter(
+            (cartItem) => cartItem.id !== cartItemBeingRemoved.id,
+          ),
+        );
+      } else {
+        updateCartItemAmount(cartItemBeingRemoved.id, 1);
+      }
+
+      setCartItemBeingRemoved(undefined);
+    }
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -231,6 +250,12 @@ const CartProvider = ({ children }: ICartProvider) => {
         toggleCartModal,
       }}
     >
+      <CartRemoveConfirmationModal
+        isModalOpen={!!cartItemBeingRemoved}
+        item={cartItemBeingRemoved}
+        handleModalConfirmation={handleRemoveItemModalConfirmation}
+      />
+
       {children}
     </CartContext.Provider>
   );
