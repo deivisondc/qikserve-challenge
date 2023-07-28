@@ -28,14 +28,7 @@ interface ICompanyContext {
 const CompanyContext = createContext({} as ICompanyContext);
 
 const CompanyProvider = ({ children, value }: ICompanyProvider) => {
-  // const [companyDetails] = useState(value);
-  const [companyDetails] = useState({
-    ...value,
-    webSettings: {
-      ...value.webSettings,
-      primaryColourHover: "#3464a8",
-    },
-  });
+  const [companyDetails] = useState(value);
 
   return (
     <CompanyContext.Provider value={{ companyDetails }}>
