@@ -1,34 +1,81 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a frontend challenge for QikServe.
 
-## Getting Started
+## How to run the application
 
-First, run the development server:
+First, install the dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+And run the project on development mode
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Decisions
 
-## Learn More
+### [NextJS](https://nextjs.org/)
+[ReactJS Docs](https://react.dev/learn/start-a-new-react-project#nextjs) recommends to use some framework and NextJS is one of those.
+It also has a new release that improves performance using Server Side Rendering by default using Server Components.
 
-To learn more about Next.js, take a look at the following resources:
+### [Tailwind](https://tailwindcss.com/)
+This framework helps providing utility classes allowing less css files at a cost of lots of classes on components.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### [Radix](https://www.radix-ui.com/)
+A framework that gives components with accessibility without any styles. I choose this framework because it would be possible to use some components keeping the same design system.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### [emotion](https://emotion.sh/docs/introduction)
+A library to create css-in-js files. This was necessary specially to set hover colors on white label components. Very similar to `styled-component` (another very common css-in-js library). My choice for using the emotion was due to compatibility with NextJS 13 ([Reference](https://nextjs.org/docs/app/building-your-application/styling/css-in-js)).
 
-## Deploy on Vercel
+### [cslx](https://www.npmjs.com/package/clsx)
+A library that made it more readable and easier to work with lots of classes and conditional classes.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### ESlint and Prettier
+Both to keep a pattern across all the application code.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### ContextAPIs
+I choose to use ContextAPI instead a Global State Management library because in my opinion we can limit what part of the application can or can not have access to a data.
+
+## Notes
+
+### View Allergy button
+According to Figma, this button will only be visible on mobile devices. I would ask the designer why and try to understand the reason for this.
+
+### Visible and Available properties
+On Figma, the dessert section is not shown on the menu list, but it is shown on top of the menu. This specific section don't have the visible property. So I assumed that is not supposed to be shown, so that's why most of the items on `Drink` section is not being rendered.
+
+The available property I add a condition to keep the product visible, but with low opacity and unable to add to cart.
+
+### Item Confirmation Dialog
+I thought it would be a good user experience if we provide a confirmation dialog before removing the item from the cart when changing the amount to zero.
+
+### Did not use the company's backgroundColour property
+I took this path because this would require some logic to test the contrast between the background and the text color.
+
+### Did not use the position property to sort sections / items
+I decide to not make the sort on frontend because it is already sorted and if it wasn't I would ask the backend team if it was possible for them to do this.
+
+## Learnings
+
+### Ellipsis
+Necessary to use `min-width: 0` to work if it is inside a flex container. [Reference](https://drafts.csswg.org/css-flexbox/#min-size-auto)
+
+### Jest String Comparison using Intl
+Intl format function sometimes uses a non-breaking space, and we need to compare using a non-breaking space as well (`\xa0`)
+
+## Bugs
+
+### RadixUI
+There is a bug due to different class id between SSR and client.
+
+### Image
+The same happens with `Section` images, but not always.
+
+## ToDo
+
+- Add fallback for Suspense (Skeleton)
+- Add ErrorBoundaries for Suspense
+- Use Intersection Observer to activate Sections while scrolling
