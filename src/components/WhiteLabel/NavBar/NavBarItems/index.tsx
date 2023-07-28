@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import styled from "@emotion/styled";
 import clsx from "clsx";
 
+import { ROUTES } from "@/constants/routes";
 import { useCompany } from "@/hooks/Company/useCompany";
 
 interface NavBarItemsProps {
@@ -31,12 +32,6 @@ const NavBarItems = ({ containerClasses }: NavBarItemsProps) => {
   const pathname = usePathname();
   const { companyDetails } = useCompany();
 
-  const ROUTES = {
-    "/": "Menu",
-    "/login": "Log in",
-    "/contact": "Contact",
-  };
-
   const navItemClass = clsx(
     "flex items-center justify-center",
     "h-full w-58 text-white border-b-white",
@@ -44,6 +39,7 @@ const NavBarItems = ({ containerClasses }: NavBarItemsProps) => {
 
   return (
     <NavBarItemsContainer
+      data-testid="navbar-items-container"
       className={containerClasses}
       primaryColour={companyDetails.webSettings.primaryColour}
       primaryColourHover={companyDetails.webSettings.primaryColourHover}

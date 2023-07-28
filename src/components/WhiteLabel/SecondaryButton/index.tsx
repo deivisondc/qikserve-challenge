@@ -23,7 +23,7 @@ const SecondaryButtonContainer = styled.button<SecondaryButtonContainerProps>`
   }
 `;
 
-const SecondaryButton = ({ children }: SecondaryButtonProps) => {
+const SecondaryButton = ({ children, ...rest }: SecondaryButtonProps) => {
   const { companyDetails } = useCompany();
 
   return (
@@ -31,6 +31,7 @@ const SecondaryButton = ({ children }: SecondaryButtonProps) => {
       className="flex w-full items-center justify-center bg-white font-bold underline"
       primaryColour={companyDetails.webSettings.primaryColour}
       primaryColourHover={companyDetails.webSettings.primaryColourHover}
+      {...rest}
     >
       {children}
     </SecondaryButtonContainer>

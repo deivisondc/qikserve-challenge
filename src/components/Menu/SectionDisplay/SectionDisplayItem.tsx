@@ -17,6 +17,7 @@ const SectionDisplayItem = ({
 }: SectionDisplayItemProps) => {
   return (
     <button
+      data-testid="section-display-button"
       className={clsx(
         "group flex w-[104px] flex-shrink-0 cursor-pointer flex-col items-center border-b-2",
         { "border-copy-main": isActive, "border-transparent": !isActive },

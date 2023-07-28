@@ -42,26 +42,25 @@ export type Modifier = {
 export type SectionItemType = {
   id: number;
   name: string;
-  description: string;
+  description?: string;
   available: boolean;
-  images: Array<ImageType>;
+  images?: Array<ImageType>;
   price: number;
   position: number;
-  visible: number;
+  visible?: number;
   modifiers?: Array<Modifier>;
 };
 
 export type SectionType = {
   id: number;
   name: string;
-  description: string;
   position: number;
-  visible: number;
+  visible?: number;
   images: Array<ImageType>;
   items: Array<SectionItemType>;
 };
 
-type MenuDetail = {
+export type MenuDetail = {
   sections: Array<SectionType>;
 };
 
@@ -100,9 +99,7 @@ const MenuProvider = ({ children, value }: IMenuProvider) => {
   }, [menu, defferedFilterQuery]);
 
   const handleSearchInputChange = (value: string) => {
-    // startTransition(() => {
     setFilterQuery(value);
-    // });
   };
 
   return (

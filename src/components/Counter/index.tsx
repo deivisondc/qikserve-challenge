@@ -51,12 +51,14 @@ const Counter = ({
 
   return (
     <div
+      data-testid="counter-container"
       className={clsx("flex w-fit items-center justify-between", {
         "gap-1": small,
         "gap-4": !small,
       })}
     >
       <RoundButton
+        data-testid="counter-decrease-button"
         icon={Minus}
         onClick={handleDecrease}
         small={small}
@@ -68,6 +70,7 @@ const Counter = ({
       </span>
 
       <RoundButton
+        data-testid="counter-increase-button"
         icon={Plus}
         onClick={handleIncrease}
         small={small}

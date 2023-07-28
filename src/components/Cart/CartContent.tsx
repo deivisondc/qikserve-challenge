@@ -2,7 +2,7 @@
 
 import { useCart } from "@/hooks/Cart/useCart";
 import { useCompany } from "@/hooks/Company/useCompany";
-import { formatCurrency } from "@/utils/formatCurrency";
+import { formatCurrency } from "@/utils/formatter";
 
 import { CartItem } from "./CartItem";
 

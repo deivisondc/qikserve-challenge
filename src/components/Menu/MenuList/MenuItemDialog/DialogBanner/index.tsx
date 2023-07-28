@@ -11,7 +11,7 @@ const DialogBanner = ({ item }: DialogBannerProps) => {
     return null;
   }
 
-  const imageSrcArray = item.images.map((image) => image.image);
+  const imageSrcArray = item.images!.map((image) => image.image);
 
   return <Carousel imagesSrc={imageSrcArray} alt={item.name} />;
 };

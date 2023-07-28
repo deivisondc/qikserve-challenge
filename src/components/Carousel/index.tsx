@@ -15,6 +15,7 @@ const Carousel = ({ imagesSrc, alt }: CarouselProps) => {
   return (
     <div className="relative">
       <img
+        data-testid="carousel-image"
         src={imagesSrc[activeIndex]}
         alt={alt}
         height="320px"
@@ -24,6 +25,7 @@ const Carousel = ({ imagesSrc, alt }: CarouselProps) => {
       {imagesSrc.length > 1 && (
         <>
           <button
+            data-testid="previous-button"
             disabled={activeIndex === 0}
             onClick={() => setActiveIndex(activeIndex - 1)}
             className={clsx(
@@ -41,6 +43,7 @@ const Carousel = ({ imagesSrc, alt }: CarouselProps) => {
             />
           </button>
           <button
+            data-testid="next-button"
             disabled={activeIndex === imagesSrc.length - 1}
             onClick={() => setActiveIndex(activeIndex + 1)}
             className={clsx(
