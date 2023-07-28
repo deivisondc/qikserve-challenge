@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { useMenu } from "@/hooks/Menu/useMenu";
+import { scrollTo } from "@/utils/scroll";
 
 import { SectionDisplayItem } from "./SectionDisplayItem";
 
@@ -13,6 +14,8 @@ const SectionDisplay = () => {
 
   function handleSectionClick(id: number) {
     setActiveSectionId(id);
+
+    scrollTo(id.toString());
   }
 
   return (
