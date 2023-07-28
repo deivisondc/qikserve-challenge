@@ -39,6 +39,9 @@ Both to keep a pattern across all the application code.
 ### ContextAPIs
 I choose to use ContextAPI instead a Global State Management library because in my opinion we can limit what part of the application can or can not have access to a data.
 
+### White Label components
+All White Label component must be used inside the company context wrapped by `<CompanyProvider />` to be able to use the company web settings that provide the colours to be used.
+
 ## Notes
 
 ### View Allergy button
