@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <Suspense fallback={<p>loading;</p>}>
+        <Suspense>
           <CompanyProviderContainer>
             <Header />
             <div className={clsx("lg:mx-auto lg:max-w-[1440px] lg:px-20")}>
