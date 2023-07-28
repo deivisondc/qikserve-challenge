@@ -21,7 +21,7 @@ const CartRemoveConfirmationModal = ({
     <AlertDialog.Root open={isModalOpen}>
       <AlertDialog.Trigger />
       <AlertDialog.Portal>
-        <AlertDialog.Overlay className="fixed inset-0 z-10 bg-black opacity-60" />
+        <AlertDialog.Overlay className="fixed inset-0 z-20 bg-black opacity-60" />
         <AlertDialog.Content className="fixed left-[50%] top-[50%] z-20 max-h-[720px] w-[90vw] max-w-[500px] translate-x-[-50%] translate-y-[-50%] overflow-auto bg-white focus:outline-none">
           <AlertDialog.Title className="border-b p-4 pb-2 text-2xl font-bold">
             Atention

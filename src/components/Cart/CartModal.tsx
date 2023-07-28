@@ -15,7 +15,7 @@ const CartModal = () => {
     <Dialog.Root open={isCartModalOpen} onOpenChange={toggleCartModal}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black opacity-60" />
-        <Dialog.Content className="fixed left-0 top-0 flex h-[100vh] w-[100vw] flex-col overflow-auto bg-white focus:outline-none">
+        <Dialog.Content className="fixed left-0 top-0 z-20 flex h-[100vh] w-[100vw] flex-col overflow-auto bg-white focus:outline-none">
           <DialogCloseButton />
 
           <div className="flex-1">
@@ -23,8 +23,10 @@ const CartModal = () => {
           </div>
 
           <div className="h-20 bg-background-default p-6 pt-2">
-            <Dialog.Close className="w-full" asChild>
-              <PrimaryButton>Checkout now</PrimaryButton>
+            <Dialog.Close asChild>
+              <div className="w-full">
+                <PrimaryButton>Checkout now</PrimaryButton>
+              </div>
             </Dialog.Close>
           </div>
         </Dialog.Content>
