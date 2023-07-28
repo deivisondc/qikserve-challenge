@@ -6,7 +6,7 @@ import { Counter } from "@/components/Counter";
 import { PrimaryButton } from "@/components/WhiteLabel/PrimaryButton";
 import { useCart } from "@/hooks/Cart/useCart";
 import { useCompany } from "@/hooks/Company/useCompany";
-import { formatCurrency } from "@/utils/formatCurrency";
+import { formatCurrency } from "@/utils/formatter";
 
 const DialogFooter = () => {
   const { companyDetails } = useCompany();
@@ -40,17 +40,19 @@ const DialogFooter = () => {
         onValueChange={(value) => updateSelectedItemAmount(value)}
       />
 
-      <Dialog.Close className="w-full">
-        <PrimaryButton
-          disabled={isButtonDisabled}
-          onClick={addSelectedItemToCart}
-        >
-          Add to order -{" "}
-          {formatCurrency(priceTotal ?? 0, {
-            locale: companyDetails.locale,
-            currency: companyDetails.ccy,
-          })}
-        </PrimaryButton>
+      <Dialog.Close asChild>
+        <div className="w-full">
+          <PrimaryButton
+            disabled={isButtonDisabled}
+            onClick={addSelectedItemToCart}
+          >
+            Add to order -{" "}
+            {formatCurrency(priceTotal ?? 0, {
+              locale: companyDetails.locale,
+              currency: companyDetails.ccy,
+            })}
+          </PrimaryButton>
+        </div>
       </Dialog.Close>
     </div>
   );

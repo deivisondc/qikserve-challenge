@@ -4,9 +4,9 @@ import { useState } from "react";
 
 import clsx from "clsx";
 
-import { Hamburger } from "../Icons/Hamburger";
-import { X } from "../Icons/X";
-import { NavBarItems } from "../WhiteLabel/NavBar/NavBarItems";
+import { Hamburger } from "@/components/Icons/Hamburger";
+import { X } from "@/components/Icons/X";
+import { NavBarItems } from "@/components/WhiteLabel/NavBar/NavBarItems";
 
 const NavBarMobile = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -16,7 +16,10 @@ const NavBarMobile = () => {
       <h1 className="flex flex-1 justify-center text-lg font-medium tracking-[0.75px]">
         Menu
       </h1>
-      <button onClick={() => setIsNavOpen(!isNavOpen)}>
+      <button
+        data-testid="hamburger-menu-button"
+        onClick={() => setIsNavOpen(!isNavOpen)}
+      >
         <Hamburger />
       </button>
 
@@ -35,6 +38,7 @@ const NavBarMobile = () => {
           />
 
           <button
+            data-testid="navbar-close-button"
             onClick={() => setIsNavOpen(!isNavOpen)}
             className="absolute right-0 top-0 m-1 p-4"
           >

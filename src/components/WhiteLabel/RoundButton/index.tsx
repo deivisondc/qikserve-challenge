@@ -40,6 +40,7 @@ const RoundButton = ({
 
   return (
     <ButtonContainer
+      data-testid="round-button"
       primaryColour={webSettings.primaryColour}
       primaryColourHover={webSettings.primaryColourHover}
       className={clsx("flex items-center justify-center rounded-full", {

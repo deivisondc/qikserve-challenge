@@ -39,6 +39,7 @@ const PrimaryButton = ({
 
   return (
     <PrimaryButtonContainer
+      data-testid="primary-button"
       primaryColour={companyDetails.webSettings.primaryColour}
       primaryColourHover={companyDetails.webSettings.primaryColourHover}
       className={clsx(

@@ -15,6 +15,7 @@ import { useMenu } from "../Menu/useMenu";
 
 interface ICartProvider {
   children: ReactNode;
+  initialValue?: Partial<ICartContext>;
 }
 
 type ModifierItemSelection = {
@@ -46,7 +47,7 @@ export interface ICartItem {
   modifiers?: Array<ModifierItemSelection>;
 }
 
-interface ICartContext {
+export interface ICartContext {
   cartItems: Array<ICartItem>;
   selectedItem?: ItemSelected;
   selectItem: (sectionId: number, itemId: number) => void;
@@ -62,12 +63,18 @@ interface ICartContext {
 
 const CartContext = createContext({} as ICartContext);
 
-const CartProvider = ({ children }: ICartProvider) => {
+const CartProvider = ({ children, initialValue }: ICartProvider) => {
   const { menu } = useMenu();
 
-  const [cartItems, setCartItems] = useState<Array<ICartItem>>([]);
-  const [selectedItem, setSelectedItem] = useState<ItemSelected>();
-  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
+  const [cartItems, setCartItems] = useState<Array<ICartItem>>(
+    initialValue?.cartItems || [],
+  );
+  const [selectedItem, setSelectedItem] = useState<ItemSelected | undefined>(
+    initialValue?.selectedItem,
+  );
+  const [isCartModalOpen, setIsCartModalOpen] = useState(
+    initialValue?.isCartModalOpen || false,
+  );
 
   const [cartItemBeingRemoved, setCartItemBeingRemoved] = useState<ICartItem>();
 

@@ -1,6 +1,7 @@
 const Search = () => {
   return (
     <svg
+      data-testid="search-icon"
       width="25"
       height="24"
       viewBox="0 0 25 24"

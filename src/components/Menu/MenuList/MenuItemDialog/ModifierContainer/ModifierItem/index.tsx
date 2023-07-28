@@ -2,11 +2,11 @@
 
 import { RadioGroupItem } from "@/components/WhiteLabel/RadixUI/RadioGroupItem";
 import { useCompany } from "@/hooks/Company/useCompany";
-import { ModifierItem } from "@/hooks/Menu/useMenu";
-import { formatCurrency } from "@/utils/formatCurrency";
+import { ModifierItem as ModifierItemType } from "@/hooks/Menu/useMenu";
+import { formatCurrency } from "@/utils/formatter";
 
 interface ModifierItemProps {
-  modifierItem: ModifierItem;
+  modifierItem: ModifierItemType;
 }
 
 const ModifierItem = ({ modifierItem }: ModifierItemProps) => {
@@ -18,6 +18,7 @@ const ModifierItem = ({ modifierItem }: ModifierItemProps) => {
       key={modifierItem.id}
     >
       <label
+        data-testid="dialog-modifier-item"
         className="flex w-full cursor-pointer flex-col gap-1 pb-4 pt-3.5"
         htmlFor={modifierItem.id.toString()}
       >

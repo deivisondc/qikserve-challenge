@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 import styled from "@emotion/styled";
 
 import { useCompany } from "@/hooks/Company/useCompany";
@@ -25,10 +23,11 @@ const Badge = ({ value }: BadgeProps) => {
 
   return (
     <BadgeContainer
+      data-testid="badge"
       className="flex min-h-[18px] min-w-[18px] items-center justify-center rounded-[4px] px-1 text-sm font-medium leading-none text-white"
       primaryColour={companyDetails.webSettings.primaryColour}
     >
-      <span>{value}</span>
+      {value}
     </BadgeContainer>
   );
 };

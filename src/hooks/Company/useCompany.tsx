@@ -7,7 +7,7 @@ interface ICompanyProvider {
   value: CompanyDetails;
 }
 
-type CompanyDetails = {
+export type CompanyDetails = {
   id: number;
   name: string;
   locale: string;
@@ -28,7 +28,14 @@ interface ICompanyContext {
 const CompanyContext = createContext({} as ICompanyContext);
 
 const CompanyProvider = ({ children, value }: ICompanyProvider) => {
-  const [companyDetails] = useState(value);
+  // const [companyDetails] = useState(value);
+  const [companyDetails] = useState({
+    ...value,
+    webSettings: {
+      ...value.webSettings,
+      primaryColourHover: "#3464a8",
+    },
+  });
 
   return (
     <CompanyContext.Provider value={{ companyDetails }}>

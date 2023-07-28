@@ -5,7 +5,7 @@ import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronDown } from "@/components/Icons/ChevronDown";
 import { useMenu } from "@/hooks/Menu/useMenu";
 
-import { MenuListItem } from "./MenuItem";
+import { MenuItem } from "./MenuItem";
 
 const MenuList = () => {
   const { menu, filteredMenu } = useMenu();
@@ -19,6 +19,8 @@ const MenuList = () => {
       {filteredMenu.sections.map((section) =>
         section.visible ? (
           <Accordion.Item
+            id={section.id.toString()}
+            data-testid="accordion-section-item"
             value={section.id.toString()}
             className="accordion"
             key={section.id}
@@ -30,15 +32,9 @@ const MenuList = () => {
               </Accordion.Trigger>
             </Accordion.Header>
             <Accordion.Content>
-              {section.items.map((item) =>
-                item.visible ? (
-                  <MenuListItem
-                    key={item.id}
-                    sectionId={section.id}
-                    item={item}
-                  />
-                ) : null,
-              )}
+              {section.items.map((item) => (
+                <MenuItem key={item.id} sectionId={section.id} item={item} />
+              ))}
             </Accordion.Content>
           </Accordion.Item>
         ) : null,

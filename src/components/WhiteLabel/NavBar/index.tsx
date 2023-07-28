@@ -21,6 +21,7 @@ const NavBar = ({ children }: NavBarProps) => {
 
   return (
     <NavBarContainer
+      data-testid="navbar-container"
       className="h-[52px]"
       primaryColour={companyDetails.webSettings.primaryColour}
     >

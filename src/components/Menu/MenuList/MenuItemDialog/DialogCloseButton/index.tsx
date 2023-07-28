@@ -7,6 +7,7 @@ const DialogCloseButton = () => {
   return (
     <Dialog.Close asChild>
       <button
+        data-testid="dialog-close-button"
         className={clsx(
           "h-[28px] w-[28px] rounded-full bg-white",
           "flex items-center justify-center",

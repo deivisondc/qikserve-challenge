@@ -20,7 +20,9 @@ const MobileFooter = () => {
     <>
       <div className={clsx("block bg-background-default", "lg:hidden")}>
         <div className="flex items-center justify-center border-y p-6">
-          <SecondaryButton>View allergy information</SecondaryButton>
+          <SecondaryButton data-testid="allergy-button">
+            View allergy information
+          </SecondaryButton>
         </div>
 
         {isBasketButtonHidden && (
@@ -36,7 +38,7 @@ const MobileFooter = () => {
             "lg:hidden",
           )}
         >
-          <PrimaryButton onClick={toggleCartModal}>
+          <PrimaryButton data-testid="basket-button" onClick={toggleCartModal}>
             Your basket - {itemAmountString}
           </PrimaryButton>
         </div>
