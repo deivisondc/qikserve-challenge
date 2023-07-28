@@ -23,9 +23,13 @@ const CartItem = ({ item }: CartItemProps) => {
     <div className="flex justify-between gap-4 p-4">
       <div className="flex w-full flex-col gap-2">
         <div>
-          <p>{item.name}</p>
+          <p data-testid="cart-item-name">{item.name}</p>
           {item.modifiers?.map((modifier) => (
-            <p className="text-copy-inactive" key={modifier.id}>
+            <p
+              data-testid="cart-item-modifier"
+              className="text-copy-inactive"
+              key={modifier.id}
+            >
               {`${modifier.name} (+${formatCurrency(modifier.price, {
                 locale: companyDetails.locale,
                 currency: companyDetails.ccy,
@@ -41,7 +45,7 @@ const CartItem = ({ item }: CartItemProps) => {
         />
       </div>
 
-      <strong>
+      <strong data-testid="cart-item-total">
         {formatCurrency(priceTotal, {
           locale: companyDetails.locale,
           currency: companyDetails.ccy,

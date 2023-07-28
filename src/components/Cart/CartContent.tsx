@@ -38,7 +38,7 @@ const CartContent = () => {
             </div>
             <div className="flex justify-between bg-background-default p-4 text-2xl">
               <span className="font-light">Total:</span>
-              <strong>
+              <strong data-testid="cart-total-price">
                 {formatCurrency(cartTotalPrice, {
                   locale: companyDetails.locale,
                   currency: companyDetails.ccy,

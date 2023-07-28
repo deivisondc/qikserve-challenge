@@ -27,7 +27,10 @@ const CartRemoveConfirmationModal = ({
             Atention
           </AlertDialog.Title>
 
-          <AlertDialog.Description className="px-6 py-4 text-copy-body">
+          <AlertDialog.Description
+            data-testid="remove-dialog-description"
+            className="px-6 py-4 text-copy-body"
+          >
             You are about to remove the item{" "}
             <span className="font-medium">{itemName?.trim()}</span> from the
             basket. Do you want to continue?
@@ -35,12 +38,14 @@ const CartRemoveConfirmationModal = ({
 
           <div className="flex items-center justify-end gap-4 px-6 py-4">
             <AlertDialog.Cancel
+              data-testid="remove-dialog-cancel-button"
               onClick={() => handleModalConfirmation(false)}
               className="rounded border bg-white px-4 py-2 font-medium hover:bg-background-subtle"
             >
               No
             </AlertDialog.Cancel>
             <AlertDialog.Action
+              data-testid="remove-dialog-confirm-button"
               onClick={() => handleModalConfirmation(true)}
               className="rounded border border-red-300 bg-red-200 px-4 py-2 font-medium text-red-800 transition-colors hover:bg-red-300"
             >
