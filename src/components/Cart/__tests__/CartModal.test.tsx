@@ -15,7 +15,7 @@ describe("<CartModal />", () => {
       </CartProvider>,
     );
 
-    const cartDescription = screen.getByText("Seu carrinho está vazio");
+    const cartDescription = screen.getByText("Your basket is empty");
     const checkoutButton = screen.getByText("Checkout now");
 
     expect(cartDescription).toBeInTheDocument();

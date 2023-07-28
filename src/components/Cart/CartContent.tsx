@@ -13,12 +13,12 @@ const CartContent = () => {
   return (
     <>
       <header className=" bg-white lg:bg-background-default">
-        <h1 className="p-6 text-2xl font-medium">Carrinho</h1>
+        <h1 className="p-6 text-2xl font-medium">Basket</h1>
       </header>
 
       <div className="bg-white">
         {cartItems.length === 0 && (
-          <span className="block p-6">Seu carrinho está vazio</span>
+          <span className="block p-6">Your basket is empty</span>
         )}
 
         {cartItems.length > 0 && (
