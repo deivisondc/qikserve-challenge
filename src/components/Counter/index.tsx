@@ -44,7 +44,10 @@ const Counter = ({
     if (counter > minValue) {
       const newCounter = counter - 1;
 
-      setCounter(newCounter);
+      // if (newCounter !== 0) {
+      //   setCounter(newCounter);
+      // }
+
       onValueChange && onValueChange(newCounter);
     }
   };

@@ -4,6 +4,7 @@ import clsx from "clsx";
 
 import { useCompany } from "@/hooks/Company/useCompany";
 
+import { ImageLazyLoading } from "../ImageLazyLoading";
 import { NavBar } from "../WhiteLabel/NavBar";
 import { NavBarItems } from "../WhiteLabel/NavBar/NavBarItems";
 import { NavBarMobile } from "./NavBarMobile";
@@ -24,12 +25,12 @@ const Header = () => {
         />
       </NavBar>
 
-      <div className="h-[150px] w-full bg-green-900">
+      <div className="h-[150px] w-full">
         <picture>
-          <img
+          <ImageLazyLoading
             className="h-full w-full object-cover"
-            src={companyDetails.webSettings.bannerImage}
-            alt="Banner"
+            imgSrc={companyDetails.webSettings.bannerImage}
+            imgAlt="Banner"
           />
         </picture>
       </div>

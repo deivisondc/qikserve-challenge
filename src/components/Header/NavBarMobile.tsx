@@ -28,6 +28,7 @@ const NavBarMobile = () => {
           <div
             onClick={() => setIsNavOpen(!isNavOpen)}
             className="absolute top-0 h-[100vh] w-full bg-black opacity-60"
+            style={{ zIndex: "calc(var(--button-index) + 10)" }}
           />
           <NavBarItems
             containerClasses={clsx(

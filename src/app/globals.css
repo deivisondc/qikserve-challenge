@@ -5,6 +5,8 @@
 body {
   @apply text-copy-main;
   @apply bg-white lg:bg-background-subtle;
+
+  --button-index: 10;
 }
 
 .accordion[data-state="closed"] svg {

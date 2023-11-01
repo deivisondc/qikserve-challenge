@@ -195,18 +195,18 @@ const CartProvider = ({ children, initialValue }: ICartProvider) => {
     if (updatedCartItemIndex > -1) {
       if (amount === 0) {
         setCartItemBeingRemoved(cartItems[updatedCartItemIndex]);
+      } else {
+        const newCartItem = cartItems.map((cartItem, index) => {
+          if (index !== updatedCartItemIndex) return cartItem;
+
+          return {
+            ...cartItem,
+            amount,
+          };
+        });
+
+        setCartItems(newCartItem);
       }
-
-      const newCartItem = cartItems.map((cartItem, index) => {
-        if (index !== updatedCartItemIndex) return cartItem;
-
-        return {
-          ...cartItem,
-          amount,
-        };
-      });
-
-      setCartItems(newCartItem);
     }
   };
 

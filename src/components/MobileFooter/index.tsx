@@ -34,9 +34,10 @@ const MobileFooter = () => {
       {!isBasketButtonHidden && (
         <div
           className={clsx(
-            "sticky bottom-0 z-10 h-20 bg-transparent p-6 pt-2 backdrop-blur-sm",
+            "sticky bottom-0 h-20 bg-transparent p-6 pt-2 backdrop-blur-sm",
             "lg:hidden",
           )}
+          style={{ zIndex: "var(--button-index)" }}
         >
           <PrimaryButton data-testid="basket-button" onClick={toggleCartModal}>
             Your basket - {itemAmountString}

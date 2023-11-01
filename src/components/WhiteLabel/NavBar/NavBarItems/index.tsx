@@ -43,6 +43,7 @@ const NavBarItems = ({ containerClasses }: NavBarItemsProps) => {
       className={containerClasses}
       primaryColour={companyDetails.webSettings.primaryColour}
       primaryColourHover={companyDetails.webSettings.primaryColourHover}
+      style={{ zIndex: "calc(var(--button-index) + 20)" }}
     >
       {Object.entries(ROUTES).map(([to, label]) => (
         <li
